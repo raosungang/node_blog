@@ -18,18 +18,18 @@ router.post('/login', function (req, res) {
         name: req.body.name,
         password: req.body.password
     };
-    ModelUser.findOne(postData, function (err,data) {
-        if(err){
+    ModelUser.findOne(postData, function (err, data) {
+        if (err) {
             return err
         }
-        if(data){
-            if(data.password == req.body.password ){
+        if (data) {
+            if (data.password == req.body.password) {
                 res.send('登陆成功')
-            }else {
+            } else {
                 res.send('密码错误')
             }
 
-        }else{
+        } else {
             res.send('没有用户或者密码错误')
         }
     });
@@ -45,11 +45,22 @@ router.post('/reg', function (req, res) {
         name: req.body.name,
         password: req.body.password
     };
-    ModelUser.create(postData, function (err, data) {
-        if (err) {
-            return err
+
+    ModelUser.findOne({
+        name: req.body.name
+    }, function (err, data) {
+        if (err) console.log(err)
+
+        if (data) {
+            res.send('此用户已注册')
+        } else {
+            ModelUser.create(postData, function (err, data) {
+                if (err) {
+                    return err
+                }
+                res.send('注册成功')
+            });
         }
-        res.send(data)
     });
     //res.send('注册成功');
     //console.log(postData);
