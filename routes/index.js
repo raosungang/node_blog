@@ -14,7 +14,26 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', function (req, res) {
+    var postData = {
+        name: req.body.name,
+        password: req.body.password
+    };
+    ModelUser.findOne(postData, function (err,data) {
+        if(err){
+            return err
+        }
+        if(data){
+            if(data.password == req.body.password ){
+                res.send('登陆成功')
+            }else {
+                res.send('密码错误')
+            }
 
+        }else{
+            res.send('没有用户或者密码错误')
+        }
+    });
+    //res.send(postData)
 });
 
 router.get('/reg', function (req, res) {
@@ -26,8 +45,8 @@ router.post('/reg', function (req, res) {
         name: req.body.name,
         password: req.body.password
     };
-    ModelUser.create(postData, function (err,data) {
-        if(err){
+    ModelUser.create(postData, function (err, data) {
+        if (err) {
             return err
         }
         res.send(data)
