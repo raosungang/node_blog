@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+#register{
+    z-index: 21;
+    opacity: 0;
+}

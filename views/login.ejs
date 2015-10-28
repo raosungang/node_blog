@@ -1,9 +1,22 @@
 <% include common/header.ejs %>
-<h1>Login</h1>
 <form method="post">
-    用户名:<input type="text" value="" name="name"><br/>
-    密码:<input type="password" value="" name="password"><br/>
-    <input type="submit" value="注册">
-</form>
-<% include common/footer.ejs%>
+    <div id="login" class="animate form">
+        <h1>Login</h1>
 
+        <p>
+            <label for="usernamesignup" class="uname" data-icon="u">Username</label>
+            <input id="usernamesignup" name="name" type="text" placeholder="username">
+        </p>
+
+        <p>
+            <label for="passwordsignup" class="youpasswd" data-icon="u">Password</label>
+            <input id="passwordsignup" name="password"  type="password" placeholder="password">
+        </p>
+
+        <p class="signin button">
+            <input type="submit" value="Sign up"/>
+        </p>
+    </div>
+
+</form>
+<% include common/footer.ejs %>
